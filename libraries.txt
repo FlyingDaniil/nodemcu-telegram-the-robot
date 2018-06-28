@@ -1,0 +1,7 @@
+onewire.h https://github.com/PaulStoffregen/OneWire
+dallastemperature.h https://github.com/milesburton/Arduino-Temperature-Control-Library
+Time.h & TimeLib.h:  https://github.com/PaulStoffregen/Time
+Timezone.h: https://github.com/JChristensen/Timezone
+NTPClient.h: https://github.com/arduino-libraries/NTPClient
+ESP8266WiFi.h & WifiUDP.h: https://github.com/ekstrand/ESP8266wifi
+Telegram bot https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot
