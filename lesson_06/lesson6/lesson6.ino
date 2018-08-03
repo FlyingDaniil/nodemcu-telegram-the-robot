@@ -25,16 +25,16 @@ TelegramBot bot (BotToken, net_ssl);
 
 //стартовая настройка
 void setup() {
-  
+
   Serial.begin(9600);
   wifiConnect();
-  bot.begin(); 
-  
+  bot.begin();
+
   pinMode(WET, OUTPUT);
   pinMode(DRY, OUTPUT);
   delay(1000);
-  
-  value = analogRead(sense_Pin)/10;
+
+  value = analogRead(sense_Pin) / 10;
 }
 
 //основной цикл
@@ -45,11 +45,11 @@ void loop() {
 }
 
 //функция для подключения к wifi
-void wifiConnect(){
+void wifiConnect() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
-     delay(500);
-     Serial.print(".");
+    delay(500);
+    Serial.print(".");
   }
   Serial.println("");
   Serial.println("WiFi connected");
@@ -57,34 +57,34 @@ void wifiConnect(){
 }
 
 //функция для общения с пользователем
-void chat(){
-  message m = bot.getUpdates(); 
-  
-  if (m.text.equals("plant")){  
-    if (value<waterMax){
-      bot.sendMessage(m.chat_id, "plant is ok");  
+void chat() {
+  message m = bot.getUpdates();
+
+  if (m.text.equals("Plant")) {
+    if (value < waterMax) {
+      bot.sendMessage(m.chat_id, "Plant is ok");
     } else {
-      bot.sendMessage(m.chat_id, "plant is not ok");
+      bot.sendMessage(m.chat_id, "Plant is not ok");
     }
   }
 }
 
-//функция обновляющая значение влажности раз в 0.5 секуды
-void updateValue(){
-  if (millis()-lastUpdate>500){
-    value= analogRead(sense_Pin)/10;
-    lastUpdate = millis();
-  }
-}
-
 //функция отвечает за светодиодную индикацию
-void leds(){
-  if (value<waterMax){
+void leds() {
+  if (value < waterMax) {
     digitalWrite(WET, HIGH);
     digitalWrite(DRY, LOW);
   } else {
-    digitalWrite(DRY,HIGH);
-    digitalWrite(WET,LOW);
-  }   
+    digitalWrite(DRY, HIGH);
+    digitalWrite(WET, LOW);
+  }
+}
+
+//функция обновляющая значение влажности раз в 0.5 секуды
+void updateValue() {
+  if (millis() - lastUpdate > 500) {
+    value = analogRead(sense_Pin) / 10;
+    lastUpdate = millis();
+  }
 }
 
